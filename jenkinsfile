@@ -18,7 +18,7 @@ pipeline {
         echo 'Stopping old process to run new process...'
  	  
 	sh 'tar czf nodefront.tar.gz server.js seed.js test README.md package.json jenkinsfile .gitignore test-results.xml'
-	sshagent(['5b83034b-c578-4480-b16b-a31fddb3286d]) {
+	sshagent(['5b83034b-c578-4480-b16b-a31fddb3286d']) {
 	
 	sh'scp nodefront.tar.gz ec2-user@10.0.1.32:~'
 	
