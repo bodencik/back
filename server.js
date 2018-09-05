@@ -5,10 +5,12 @@ const mysql = require('mysql')
 const util = require('util')
 
 const pool = mysql.createPool({
-  host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'applicationuser',
-  password: process.env.DB_PASS || 'applicationuser',
+  host: process.env.DB_HOST || 'bryan-db.cm6hb8mfglop.us-east-1.rds.amazonaws.com',
+  user: process.env.DB_USER || 'bryandb',
+  password: process.env.DB_PASS || 'Fantinna93!!',
   database: process.env.DB_NAME || 'movie_db'
+
+
 })
 pool.query = util.promisify(pool.query)
 
@@ -53,7 +55,7 @@ app.get('/pending', async function (req, res) {
       'from movie_db.movies m, movie_db.reviewers r, movie_db.publications p where' +
       'r.publication=p.name and m.reviewer=r.name and m.release>=2017'
     )
-    res.json(rows)
+  res.json(rows)
   } catch (err) {
     console.error('API Error:', err)
     res.staus(500).send({'msg': 'Internal server error'})
@@ -67,3 +69,4 @@ app.get('/', function (req, res) {
 console.log('server listening through port: ' + process.env.PORT)
 app.listen(process.env.PORT || 3000)
 module.exports = app
+
