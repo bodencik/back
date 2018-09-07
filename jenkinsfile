@@ -13,7 +13,7 @@ pipeline {
   
   
   
-    stage('Run Application') {
+     stage('Run Application') {
        steps {
         echo 'Stopping old process to run new process...'
  	  
